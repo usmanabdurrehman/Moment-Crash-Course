@@ -12,9 +12,22 @@ const twoDigitMonth = date.format("MM"); // 06
 const shortMonthName = date.format("MMM"); // Jun
 const fullMonthName = date.format("MMMM"); // June
 
-// Day
-const oneDigitDay = date.format("D"); // 7
-const twoDigitDay = date.format("DD"); // 07
+// Day of month
+const oneDigitDayOfMonth = date.format("D"); // 7
+const dayOfTheMonth = date.format("Do"); // 7th
+const twoDigitDayOfMonth = date.format("DD"); // 07
+
+// Day of year
+const oneDigitDayOfYear = date.format("DDD"); // 7
+const dayOfTheYear = date.format("DDDo"); // 7th
+const twoDigitDayOfYear = date.format("DDDD"); // 07
+
+// Day of week
+const oneDigitDayOfWeek = date.format("d"); // 1
+const dayOfTheWeek = date.format("do"); // 1st
+const twoLetterDayOfWeek = date.format("dd"); // Sa
+const threeLetterDayOfWeek = date.format("ddd"); // Sat
+const fullDayOfWeek = date.format("dddd"); // Saturday
 
 // Hour
 const oneDigitHour = date.format("h"); // 1
