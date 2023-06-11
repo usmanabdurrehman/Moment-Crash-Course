@@ -1,28 +1,56 @@
 const moment = require("moment");
+const { getFilteredObj } = require("./util");
 
-// Formats
-const rightNow = moment();
-const stringInit = moment("2022-12-12T01:32:35");
-const objectInit = moment({
+//#region VARIABLES
+let rightNow;
+let stringInit;
+let objectInit;
+let arrayInit;
+let timestampInit;
+let dateInit;
+let momentInit;
+let parsedZone;
+let removedZone;
+let isValid;
+let inValidAt;
+//#endregion
+
+//#region Formats
+rightNow = moment();
+stringInit = moment("2022-10-10T10:10:10");
+objectInit = moment({
   year: 2022,
   month: 11,
-  day: 1,
-  hour: 1,
-  minutes: 34,
-  second: 34,
+  day: 10,
 });
-const arrayInit = moment([2022, 12, 12, 1, 34, 35]);
-const timestampInit = moment(123);
-const dateInit = moment(new Date());
-const momentInit = moment(moment());
+arrayInit = moment([2022, 11, 11, 10, 10, 10]);
+timestampInit = moment(1665378610000);
+dateInit = moment(new Date());
+momentInit = moment(moment());
+//#endregion
 
-// Parse Zone
+//#region Parse Zone
+parsedZone = moment.parseZone("2022-10-10T10:00:00-05:00");
+removedZone = moment("2022-10-10T10:00:00-05:00");
+//#endregion
 
-const parsedZone = moment.parseZone("2022-12-12T01:00:00-5:00");
-const removedZone = moment("2022-12-12T01:00:00-5:00");
+//#region Validation
+isValid = moment("2022-10-10").isValid();
+inValidAt = moment("3000-12-30T23:30:30").invalidAt();
+//#endregion
 
-// Validation
-const isValid = moment("2022-12-12T01:32:35").isValid();
-const isInValid = moment("2022-32-12T01:32:35").isValid();
-
-const inValidAt = moment("2022-32-12T01:32:35").inValidAt();
+console.table(
+  getFilteredObj({
+    rightNow: rightNow?.format(),
+    stringInit: stringInit?.format(),
+    objectInit: objectInit?.format(),
+    arrayInit: arrayInit?.format(),
+    timestampInit: timestampInit?.format(),
+    dateInit: dateInit?.format(),
+    momentInit: momentInit?.format(),
+    parsedZone: parsedZone?.format(),
+    removedZone: removedZone?.format(),
+    isValid,
+    inValidAt,
+  })
+);

@@ -1,56 +1,157 @@
+const { getFilteredObj } = require("./util");
+
 const moment = require("moment");
 
-const date = moment("2022-6-7T01:32:35");
+const date = moment("2022-06-07T14:09:04");
 
-// Year
-const year = date.format("YY"); // 22
-const fullYear = date.format("YYYY"); // 2022
+//#region VARS_DEFINITION
+const formatExample = date.format(
+  "[On the] Do [of] MMMM, YYYY [at] HH:MM a, [I graduated from college]"
+);
 
-// Month
-const oneDigitMonth = date.format("M"); // 6
-const twoDigitMonth = date.format("MM"); // 06
-const shortMonthName = date.format("MMM"); // Jun
-const fullMonthName = date.format("MMMM"); // June
+let year;
+let fullYear;
 
-// Day of month
-const oneDigitDayOfMonth = date.format("D"); // 7
-const dayOfTheMonth = date.format("Do"); // 7th
-const twoDigitDayOfMonth = date.format("DD"); // 07
+let month;
+let paddedMonth;
+let monthOrdinal;
+let shortMonthName;
+let fullMonthName;
 
-// Day of year
-const oneDigitDayOfYear = date.format("DDD"); // 7
-const dayOfTheYear = date.format("DDDo"); // 7th
-const twoDigitDayOfYear = date.format("DDDD"); // 07
+let dayOfMonth;
+let dayOfMonthOrdinal;
+let paddedDayOfMonth;
 
-// Day of week
-const oneDigitDayOfWeek = date.format("d"); // 1
-const dayOfTheWeek = date.format("do"); // 1st
-const twoLetterDayOfWeek = date.format("dd"); // Sa
-const threeLetterDayOfWeek = date.format("ddd"); // Sat
-const fullDayOfWeek = date.format("dddd"); // Saturday
+let dayOfWeek;
+let dayOfWeekOrdinal;
+let twoLetterDayOfWeek;
+let threeLetterDayOfWeek;
+let fullDayOfWeek;
 
-// Hour
-const oneDigitHour = date.format("h"); // 1
-const twoDigitHour = date.format("hh"); // 01
+let hour24;
+let paddedHour24;
+let hour;
+let paddedHour;
 
-// Minute
-const oneDigitMinute = date.format("m"); // 32
-const twoDigitMinute = date.format("mm"); // 32
+let minute;
+let paddedMinute;
 
-// Second
-const oneDigitSecond = date.format("s"); // 35
-const twoDigitSecond = date.format("ss"); // 35
+let second;
+let paddedSecond;
 
-// AM/PM
-const AM = date.format("A");
-const am = date.format("a");
+let AMPM;
+let ampm;
 
-// Escaping strings
-const escaped = date.format("[Birthday]");
-const withoutEscaping = date.format("Birthday");
+let escaped;
+let withoutEscaping;
 
-// Combining formats
+let combinedSentence;
+//#endregion
 
-const sentence = date.format(
-  "[On the] Do [of] MMMM, YYYY at HH:MM a , [I graduated from college]"
+//#region Year
+year = date.format("YY");
+fullYear = date.format("YYYY");
+//#endregion
+
+//#region Month
+month = date.format("M");
+paddedMonth = date.format("MM");
+monthOrdinal = date.format("Mo");
+shortMonthName = date.format("MMM");
+fullMonthName = date.format("MMMM");
+//#endregion
+
+//#region Day of Month
+dayOfMonth = date.format("D");
+paddedDayOfMonth = date.format("DD");
+dayOfMonthOrdinal = date.format("Do");
+//#endregion
+
+//#region Day of Week
+dayOfWeek = date.format("d");
+dayOfWeekOrdinal = date.format("do");
+twoLetterDayOfWeek = date.format("dd");
+threeLetterDayOfWeek = date.format("ddd");
+fullDayOfWeek = date.format("dddd");
+//#endregion
+
+//#region 24 Hour
+hour24 = date.format("H");
+paddedHour24 = date.format("HH");
+//#endregion
+
+//#region Hour
+hour = date.format("h");
+paddedHour = date.format("hh");
+//#endregion
+
+//#region Minute
+minute = date.format("m");
+paddedMinute = date.format("mm");
+//#endregion
+
+//#region Second
+second = date.format("s");
+paddedSecond = date.format("ss");
+//#endregion
+
+//#region AM/PM
+ampm = date.format("a");
+AMPM = date.format("A");
+//#endregion
+
+//#region Escaping formats
+escaped = date.format("[Birthday]");
+withoutEscaping = date.format("Birthday");
+//#endregion
+
+//#region Combining Formats
+// On the 7th of June, 2022 at 01:06 am, I graudated from college
+combinedSentence = date.format(
+  "[On the] Do [of] MMMM, YYYY [at] HH:MM a , [I graduated from college]"
+);
+//#endregion
+
+console.log(formatExample);
+
+console.table(
+  getFilteredObj({
+    year,
+    fullYear,
+
+    month,
+    paddedMonth,
+    monthOrdinal,
+    shortMonthName,
+    fullMonthName,
+
+    dayOfMonth,
+    paddedDayOfMonth,
+    dayOfMonthOrdinal,
+
+    dayOfWeek,
+    dayOfWeekOrdinal,
+    twoLetterDayOfWeek,
+    threeLetterDayOfWeek,
+    fullDayOfWeek,
+
+    hour24,
+    paddedHour24,
+    hour,
+    paddedHour,
+
+    minute,
+    paddedMinute,
+
+    second,
+    paddedSecond,
+
+    AMPM,
+    ampm,
+
+    escaped,
+    withoutEscaping,
+
+    combinedSentence,
+  })
 );
